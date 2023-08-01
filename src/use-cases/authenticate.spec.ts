@@ -32,7 +32,7 @@ describe('Register use case', () => {
     const usersRepository = new InMemoryUsersRepository()
     const sut = new AuthenticateUseCase(usersRepository)
 
-    expect(() =>
+    await expect(() =>
       sut.execute({
         email: 'johndoe@email',
         password: '123456',
@@ -50,7 +50,7 @@ describe('Register use case', () => {
       password_hash: await hash('123456', 6),
     })
 
-    expect(() =>
+    await expect(() =>
       sut.execute({
         email: 'johndoe@email',
         password: '123123',
