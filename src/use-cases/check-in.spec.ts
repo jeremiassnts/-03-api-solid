@@ -14,13 +14,13 @@ describe('Register use case', () => {
     gymsRepository = new InMemoryGymsRepository()
     sut = new CheckInUseCase(checkInsRepository, gymsRepository)
 
-    gymsRepository.items.push({
+    gymsRepository.create({
       id: 'gym-01',
       title: 'Javascript Gym',
       description: '',
       phone: '',
-      latitude: new Decimal(0),
-      longitude: new Decimal(0),
+      latitude: 0,
+      longitude: 0,
     })
 
     vi.useFakeTimers()
