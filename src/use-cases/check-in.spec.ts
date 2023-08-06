@@ -4,7 +4,7 @@ import { InMemoryCheckInsRepository } from '@/repositories/in-memcory/in-memory-
 import { InMemoryGymsRepository } from '@/repositories/in-memcory/in-memory-gyms-repository'
 import { Decimal } from '@prisma/client/runtime/library'
 
-describe('Register use case', () => {
+describe('Check in use case', () => {
   let checkInsRepository: InMemoryCheckInsRepository
   let gymsRepository: InMemoryGymsRepository
   let sut: CheckInUseCase
