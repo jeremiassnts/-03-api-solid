@@ -7,13 +7,13 @@ export class InMemoryGymsRepository implements GymsRepository {
   public items: Gym[] = []
 
   async findById(id: string) {
-    const user = this.items.find((item) => item.id === id)
+    const gym = this.items.find((item) => item.id === id)
 
-    if (!user) {
+    if (!gym) {
       return null
     }
 
-    return user
+    return gym
   }
 
   async create(data: Prisma.GymCreateInput) {
