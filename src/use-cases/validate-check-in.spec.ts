@@ -1,7 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { InMemoryCheckInsRepository } from '@/repositories/in-memcory/in-memory-check-ins-repository'
-import { InMemoryGymsRepository } from '@/repositories/in-memcory/in-memory-gyms-repository'
-import { Decimal } from '@prisma/client/runtime/library'
 import { ValidateCheckInUseCase } from './validate-check-in'
 import { ResourceNotFound } from './errors/resource-not-found-error'
 
@@ -51,8 +49,10 @@ describe('Check in use case', () => {
 
     vi.advanceTimersByTime(_21minutesInMs)
 
-    await expect(() => sut.execute({
-      checkInId: createdCheckIn.id,
-    })).rejects.toBeInstanceOf(Error)
+    await expect(() =>
+      sut.execute({
+        checkInId: createdCheckIn.id,
+      }),
+    ).rejects.toBeInstanceOf(Error)
   })
 })
