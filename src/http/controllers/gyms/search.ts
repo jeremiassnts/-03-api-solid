@@ -8,12 +8,14 @@ export async function search(req: FastifyRequest, res: FastifyReply) {
     page: z.coerce.number().min(1).default(1),
   })
 
-  const { q, page } = searchGymQuerySchema.parse(req.body)
+  const { q, page } = searchGymQuerySchema.parse(req.query)
   const searchGymUseCase = makeSearchGymsUseCase()
-  await searchGymUseCase.execute({
+  const { gyms } = await searchGymUseCase.execute({
     query: q,
     page,
   })
 
-  return res.status(200).send()
+  return res.status(200).send({
+    gyms,
+  })
 }

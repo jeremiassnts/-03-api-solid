@@ -1,9 +1,9 @@
-import { afterAll, beforeAll, expect, it, test } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import request from 'supertest'
 import { app } from '@/app'
 import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-user'
 
-test('Search gym (e2e)', () => {
+describe('Search gym (e2e)', () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -16,7 +16,7 @@ test('Search gym (e2e)', () => {
     const { token } = await createAndAuthenticateUser(app)
     await request(app.server)
       .post('/gyms')
-      .set('Authorizxation', `Bearer ${token}`)
+      .set('Authorization', `Bearer ${token}`)
       .send({
         title: 'Javascript Gym',
         description: 'Some description',
@@ -27,7 +27,7 @@ test('Search gym (e2e)', () => {
 
     await request(app.server)
       .post('/gyms')
-      .set('Authorizxation', `Bearer ${token}`)
+      .set('Authorizatasion', `Bearer ${token}`)
       .send({
         title: 'Typescript Gym',
         description: 'Some description',
@@ -37,7 +37,7 @@ test('Search gym (e2e)', () => {
       })
 
     const response = await request(app.server)
-      .get('/gymcs/search')
+      .get('/gyms/search')
       .query({
         q: 'Javascript',
       })
